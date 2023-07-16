@@ -67,8 +67,8 @@ class StrategyManager implements StrategyInterface
         if (!isset($map[$operator])) {
             throw new StrategyException("Unsupported operator: $operator");
         }
-
-        return "App\Services\\" . $map[$operator];
+        // 返回当前命令空间加上类名
+        return __NAMESPACE__ . '\\' . $map[$operator];
     }
 
     public function resolve(mixed $data): array
