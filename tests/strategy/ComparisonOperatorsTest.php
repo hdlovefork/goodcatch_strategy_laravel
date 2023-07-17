@@ -35,7 +35,7 @@ class ComparisonOperatorsTest extends TestCase
             ['age' => 31],
         ];
 
-        $result = StrategyManager::make($config)->resolve($testData);
+        $result = StrategyManager::make($config)->allSatisfied($testData);
         $this->assertCount(4, $result);
     }
 
@@ -64,7 +64,7 @@ class ComparisonOperatorsTest extends TestCase
             ['age' => 31],
         ];
 
-        $result = StrategyManager::make($config)->resolve($testData);
+        $result = StrategyManager::make($config)->allSatisfied($testData);
         $this->assertCount(4, $result);
     }
 
@@ -93,7 +93,7 @@ class ComparisonOperatorsTest extends TestCase
             ['age' => 31],
         ];
 
-        $result = StrategyManager::make($config)->resolve($testData);
+        $result = StrategyManager::make($config)->allSatisfied($testData);
         $this->assertCount(1, $result);
     }
 
@@ -122,7 +122,7 @@ class ComparisonOperatorsTest extends TestCase
             ['age' => 31],
         ];
 
-        $result = StrategyManager::make($config)->resolve($testData);
+        $result = StrategyManager::make($config)->allSatisfied($testData);
         $this->assertCount(1, $result);
     }
 
@@ -151,7 +151,7 @@ class ComparisonOperatorsTest extends TestCase
             ['age' => 31],
         ];
 
-        $result = StrategyManager::make($config)->resolve($testData);
+        $result = StrategyManager::make($config)->allSatisfied($testData);
         $this->assertCount(5, $result);
     }
 
@@ -180,7 +180,7 @@ class ComparisonOperatorsTest extends TestCase
             ['age' => 31],
         ];
 
-        $result = StrategyManager::make($config)->resolve($testData);
+        $result = StrategyManager::make($config)->allSatisfied($testData);
         $this->assertCount(1, $result);
     }
 
@@ -211,7 +211,7 @@ class ComparisonOperatorsTest extends TestCase
             ['age' => 21],
         ];
 
-        $result = StrategyManager::make($config)->resolve($testData);
+        $result = StrategyManager::make($config)->allSatisfied($testData);
         $this->assertCount(3, $result);
     }
 
@@ -242,7 +242,38 @@ class ComparisonOperatorsTest extends TestCase
             ['age' => 21],
         ];
 
-        $result = StrategyManager::make($config)->resolve($testData);
+        $result = StrategyManager::make($config)->allSatisfied($testData);
+        $this->assertCount(4, $result);
+    }
+
+    /**
+     * 测试NotIn策略（运算空格分隔）
+     * @test
+     */
+    public function should_satisfy_not_in_blank_strategy()
+    {
+        $config = [
+            'operator' => 'and',
+            'conditions' => [
+                [
+                    'field' => 'age',
+                    'operator' => 'not in',
+                    'value' => [18, 19, 20, 21]
+                ]
+            ]
+        ];
+
+        $testData = [
+            ['age' => 20],
+            ['age' => 25],
+            ['age' => 30],
+            ['age' => 17],
+            ['age' => 31],
+            ['age' => 19],
+            ['age' => 21],
+        ];
+
+        $result = StrategyManager::make($config)->allSatisfied($testData);
         $this->assertCount(4, $result);
     }
 
@@ -273,22 +304,22 @@ class ComparisonOperatorsTest extends TestCase
             ['age' => 21],
         ];
 
-        $result = StrategyManager::make($config)->resolve($testData);
+        $result = StrategyManager::make($config)->allSatisfied($testData);
         $this->assertCount(4, $result);
     }
 
     /**
-     * 测试NotBetween策略
+     * 测试NotBetween策略（运算空格分隔）
      * @test
      */
-    public function should_satisfy_not_between_strategy()
+    public function should_satisfy_not_between_blank_strategy()
     {
         $config = [
             'operator' => 'and',
             'conditions' => [
                 [
                     'field' => 'age',
-                    'operator' => 'notBetween',
+                    'operator' => 'not between',
                     'value' => [18, 25]
                 ]
             ]
@@ -304,7 +335,7 @@ class ComparisonOperatorsTest extends TestCase
             ['age' => 21],
         ];
 
-        $result = StrategyManager::make($config)->resolve($testData);
+        $result = StrategyManager::make($config)->allSatisfied($testData);
         $this->assertCount(3, $result);
     }
 

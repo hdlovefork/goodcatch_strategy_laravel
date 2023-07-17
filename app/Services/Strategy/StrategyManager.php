@@ -79,7 +79,7 @@ class StrategyManager implements StrategyInterface
         return __NAMESPACE__ . '\\' . $map[$operator];
     }
 
-    public function resolve(mixed $data): array
+    public function allSatisfied(mixed $data): array
     {
         $items = is_array($data) ? $data : [$data];
         $result = [];
