@@ -2,6 +2,9 @@
 
 namespace App\Services\Strategy;
 
+/**
+ * 等于策略
+ */
 class EqualToStrategy implements StrategyInterface {
     private $field;
     private $value;

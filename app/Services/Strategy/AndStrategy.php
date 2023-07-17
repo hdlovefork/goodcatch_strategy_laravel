@@ -2,6 +2,9 @@
 
 namespace App\Services\Strategy;
 
+/**
+ * And策略
+ */
 class AndStrategy implements StrategyInterface {
     private $strategies;
 

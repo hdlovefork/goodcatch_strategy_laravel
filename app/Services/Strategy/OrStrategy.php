@@ -2,6 +2,9 @@
 
 namespace App\Services\Strategy;
 
+/**
+ * Or策略
+ */
 class OrStrategy implements StrategyInterface {
     private $strategies;
 

@@ -46,6 +46,8 @@ class StrategyManager implements StrategyInterface
             return new StrategyManager(new OrStrategy($strategies));
         } elseif ($strategyType === 'and') {
             return new StrategyManager(new AndStrategy($strategies));
+        } elseif ($strategyType === 'not') {
+            return new StrategyManager(new NotStrategy(new AndStrategy($strategies)));
         } else {
             throw new StrategyException("Unsupported strategy type: $strategyType");
         }
@@ -60,8 +62,14 @@ class StrategyManager implements StrategyInterface
             '=' => 'EqualToStrategy',
             '<=' => 'LessThanOrEqualToStrategy',
             '>=' => 'GreaterThanOrEqualToStrategy',
+            '!=' => 'NotEqualToStrategy',
+            '<>' => 'NotEqualToStrategy',
             'in' => 'InArrayStrategy',
+            'not in' => 'NotInArrayStrategy',
+            'notIn' => 'NotInArrayStrategy',
             'between' => 'BetweenStrategy',
+            'not between' => 'NotBetweenStrategy',
+            'notBetween' => 'NotBetweenStrategy',
         ];
 
         if (!isset($map[$operator])) {
