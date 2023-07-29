@@ -1,26 +1,65 @@
-# Lumen PHP Framework
+# 智能策略的Laravel实现
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/lumen)](https://packagist.org/packages/laravel/lumen-framework)
+## 概述
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+基于`goodcatch_strategy`策略的Laravel实现，包含数据库定义、模型以及策略间的转换。
 
-> **Note:** In the years since releasing Lumen, PHP has made a variety of wonderful performance improvements. For this reason, along with the availability of [Laravel Octane](https://laravel.com/docs/octane), we no longer recommend that you begin new projects with Lumen. Instead, we recommend always beginning new projects with [Laravel](https://laravel.com).
+## 使用
 
-## Official Documentation
+根据一个简单规则创建策略
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+```php
+$strategy = Strategy::createWithRule([
+            'operator' => 'between',
+            'field' => 'age',
+            'value' => '18,30'
+        ]);
+```
 
-## Contributing
+根据一个复杂规则创建策略
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```php
+$rule = [
+            'operator' => 'and',
+            // 条件或称为策略组
+            'conditions' => [
+                //条件a
+                [
+                    'operator' => '=',
+                    'field' => 'age',
+                    'value' => '18',
+                ],
+                // 条件b
+                [
+                    'operator' => '=',
+                    'field' => 'gender',
+                    'value' => '女'
+                ],
+                // 条件c 或者 称为策略组
+                [
+                    'operator' => 'or',
+                    'conditions' => [
+                        // 条件c2
+                        [
+                            'operator' => '=',
+                            'field' => 'city',
+                            'value' => '北京'
+                        ],
+                        [
+                            'operator' => '=',
+                            'field' => 'city',
+                            'value' => '成都'
+                        ]
+                    ]
+                ]
+            ]
+        ];
 
-## Security Vulnerabilities
+        $strategy = Strategy::createWithRule($rule);
+```
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+也可以将数据库对应的策略模型转换成规则数组
 
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```php
+$rule = $strategy->toRule();
+```
