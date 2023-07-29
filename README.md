@@ -9,7 +9,7 @@
 根据一个简单规则创建策略
 
 ```php
-App\Models\Strategy;
+use App\Models\Strategy;
 
 $strategy = Strategy::createWithRule([
             'operator' => 'between',
@@ -21,7 +21,7 @@ $strategy = Strategy::createWithRule([
 根据一个复杂规则创建策略
 
 ```php
-App\Models\Strategy;
+use App\Models\Strategy;
 
 $rule = [
             'operator' => 'and',
@@ -65,7 +65,7 @@ $rule = [
 也可以将数据库对应的策略模型转换成规则数组
 
 ```php
-App\Models\Strategy;
+use App\Models\Strategy;
 
 $strategy = Strategy::find(1);
 $rule = $strategy->toRule();
