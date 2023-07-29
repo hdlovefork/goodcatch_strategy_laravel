@@ -2,7 +2,7 @@
 
 ## 概述
 
-基于`goodcatch_strategy`策略的Laravel实现，包含数据库定义、模型以及策略间的转换。
+基于[goodcatch_strategy](https://github.com/hdlovefork/goodcatch_strategy)项目策略的Laravel实现，包含数据库定义、模型以及策略间的转换。
 
 ## 使用
 
