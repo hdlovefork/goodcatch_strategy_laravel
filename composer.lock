@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92349cb28edd03fc664907cf9290705c",
+    "content-hash": "94a4d7cf2e43eca9e35079f4fd9a043d",
     "packages": [
         {
             "name": "brick/math",
@@ -311,6 +311,43 @@
                 "symfony"
             ],
             "time": "2022-02-20T15:07:15+00:00"
+        },
+        {
+            "name": "goodcatch/strategy",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./packages/goodcatch_strategy",
+                "reference": "ecbb27f13b4e6de9ad14a9ff47e0003719d5167b"
+            },
+            "require": {
+                "illuminate/collections": "^10.15",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Goodcatch\\Strategy\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Goodcatch\\Strategy\\Test\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Dean",
+                    "email": "1602264241@qq.com"
+                }
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "graham-campbell/result-type",
@@ -862,7 +899,7 @@
             "version": "v10.15.0",
             "dist": {
                 "type": "zip",
-                "url": "https://mirrors.tencent.com/repository/composer/illuminate/database/v10.15.0/illuminate-database-v10.15.0.zip",
+                "url": "https://mirrors.cloud.tencent.com/repository/composer/illuminate/database/v10.15.0/illuminate-database-v10.15.0.zip",
                 "reference": "f40768ccf945a494c005000f348a13e8828a2621",
                 "shasum": ""
             },
@@ -5260,7 +5297,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "goodcatch/strategy": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
